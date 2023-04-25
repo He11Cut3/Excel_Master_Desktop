@@ -56,6 +56,20 @@
                                            Foreground="#97E6C1" />
                     </StackPanel>
                 </Button>
+                <Button Background="Transparent"
+                        BorderBrush="Transparent"
+                        x:Name="Close"
+                        Margin="1042,13,-872,19"
+                        Click="Close_Click">
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="0"
+                                Grid.Column="0">
+                        <Controls:PackIcon Kind="Close"
+                                           Width="22"
+                                           Height="25"
+                                           Foreground="#97E6C1" />
+                    </StackPanel>
+                </Button>
             </Grid>
             <StackPanel Grid.Column="1"
                         x:Name="TestUC"

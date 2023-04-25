@@ -39,40 +39,67 @@ namespace ExcelMaster.AP1_4_Mon_
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string _BranchName = this._branchName;
-
-            if ((MessageBox.Show("Вы уверены, что хотите добавить информацию?", "Добавление", MessageBoxButton.YesNo, MessageBoxImage.Warning)) == MessageBoxResult.Yes)
+            int count = 0;
+            if (CB1.IsChecked == true)
             {
-                double A = Convert.ToInt32(AP_A.Text);
-                double B = Convert.ToInt32(AP_B.Text);
-                double result = (A / B) * 100;
-
-                if (result >= 25 && result <= 100)
+                count++;
+            }
+            if (CB2.IsChecked == true)
+            {
+                count++;
+            }
+            if (CB3.IsChecked == true)
+            {
+                count++;
+            }
+            if (CB4.IsChecked == true)
+            {
+                count++;
+            }
+            if (CB5.IsChecked == true)
+            {
+                count++;
+            }
+            if (CB6.IsChecked == true)
+            {
+                count++;
+            }
+            if (CB7.IsChecked == true)
+            {
+                count++;
+            }
+            if (count == 7)
+            {
+                if ((MessageBox.Show("Вы уверены, что хотите рассчитать информацию?", "Добавление", MessageBoxButton.YesNo, MessageBoxImage.Warning)) == MessageBoxResult.Yes)
                 {
-                    var recordsToUpdate = _context.ExcelMaster_Educational_Monitoring.Where(x => x.ExcelMaster_Educational_Monitoring_Name == _BranchName).ToList();
+
+                    var recordsToUpdate = _context.ExcelMaster_Educational_Monitoring.Where(x => x.ExcelMaster_Educational_Monitoring_Name == _branchName).ToList();
 
                     foreach (var duplicate in recordsToUpdate)
                     {
-                        duplicate.ExcelMaster_Educational_Monitoring_AP1 = 10;
-                    };
-                    _uC.Itog_Mon();
+                        duplicate.ExcelMaster_Educational_Monitoring_AP1 = 5;
+                    }
+                    _uC.Itog_Gos();
                     _context.SaveChanges();
                     this.Close();
                 }
-                else
+            }
+            else
+            {
+                if ((MessageBox.Show("Вы уверены, что хотите рассчитать информацию?", "Добавление", MessageBoxButton.YesNo, MessageBoxImage.Warning)) == MessageBoxResult.Yes)
                 {
-                    var recordsToUpdate = _context.ExcelMaster_Educational_Monitoring.Where(x => x.ExcelMaster_Educational_Monitoring_Name == _BranchName).ToList();
+
+                    var recordsToUpdate = _context.ExcelMaster_Educational_Monitoring.Where(x => x.ExcelMaster_Educational_Monitoring_Name == _branchName).ToList();
 
                     foreach (var duplicate in recordsToUpdate)
                     {
                         duplicate.ExcelMaster_Educational_Monitoring_AP1 = 0;
-                    };
+                    }
                     _uC.Itog_Mon();
                     _context.SaveChanges();
                     this.Close();
                 }
             }
-
         }
     }
 }

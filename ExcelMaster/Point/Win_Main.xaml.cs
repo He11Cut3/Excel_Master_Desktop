@@ -93,5 +93,10 @@ namespace ExcelMaster.Point
             New_Depart new_Depart = new New_Depart(_context, this);
             new_Depart.ShowDialog();
         }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+           Application.Current.Shutdown();  
+        }
     }
 }

@@ -25,9 +25,9 @@
                 <ColumnDefinition Width="173*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="71*" />
-                <RowDefinition Height="155*" />
-                <RowDefinition Height="74*" />
+                <RowDefinition Height="34*" />
+                <RowDefinition Height="115*" />
+                <RowDefinition Height="0*" />
             </Grid.RowDefinitions>
             <Button Margin="0,13,14,0"
                     Background="Transparent"
@@ -45,41 +45,86 @@
                                          HorizontalAlignment="Center" />
             </Button>
             <TextBlock Text="Ex-Master"
-                       Style="{StaticResource menuTitle}" />
+                       Style="{StaticResource menuTitle}"
+                       Margin="63,30,0,14" />
             <StackPanel  Grid.Row="1"
                          HorizontalAlignment="Center"
-                         VerticalAlignment="Center">
+                         VerticalAlignment="Center"
+                         Height="230"
+                         Width="170">
 
-                <TextBlock Text="Количество педагогов по спец."
+                <TextBlock Text="1. Доступ к проф. БД"
                            TextWrapping="Wrap"
                            Foreground="#cfcfcf"
-                           FontSize="18"
+                           FontSize="14"
                            FontWeight="Bold"
                            Width="170" />
-                <TextBlock Text="Количество педагогов общих дисц."
+                <TextBlock Text="2. Наличие инф. справочника"
                            TextWrapping="Wrap"
                            Foreground="#cfcfcf"
-                           FontSize="18"
+                           FontSize="14"
                            FontWeight="Bold"
                            Width="170" />
+                <TextBlock Text="3. Наличие инф. систем"
+                           TextWrapping="Wrap"
+                           Foreground="#cfcfcf"
+                           FontSize="14"
+                           FontWeight="Bold"
+                           Width="170" />
+                <TextBlock Text="4. Наличие инф. ресурсов"
+                           TextWrapping="Wrap"
+                           Foreground="#cfcfcf"
+                           FontSize="14"
+                           FontWeight="Bold"
+                           Width="170" />
+                <TextBlock Text="5. Доступ к метод. материалам"
+                           TextWrapping="Wrap"
+                           Foreground="#cfcfcf"
+                           FontSize="14"
+                           FontWeight="Bold"
+                           Width="180" />
+                <TextBlock Text="6. Электронная система учёта обучающихся"
+                           TextWrapping="Wrap"
+                           Foreground="#cfcfcf"
+                           FontSize="14"
+                           FontWeight="Bold"
+                           Width="180" />
+                <TextBlock Text="7. Электронная система обучения"
+                           TextWrapping="Wrap"
+                           Foreground="#cfcfcf"
+                           FontSize="14"
+                           FontWeight="Bold"
+                           Width="180" />
+
             </StackPanel>
-
-            <TextBox Grid.Column="1"
-                     Grid.Row="1"
-                     x:Name="AP_A"
-                     Height="30"
-                     Margin="10,27,64,96" />
-            <TextBox Grid.Column="1"
-                     Grid.Row="1"
-                     x:Name="AP_B"
-                     Height="30"
-                     Margin="10,85,64,38" />
+            <StackPanel Grid.Column="1"
+                        Grid.Row="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top">
+                <CheckBox Margin="2,2,0,0"
+                          x:Name="CB1" />
+                <CheckBox Margin="2,12,0,0"
+                          x:Name="CB2" />
+                <CheckBox Margin="2,10,0,0"
+                          x:Name="CB3" />
+                <CheckBox Margin="2,8,0,0"
+                          x:Name="CB4" />
+                <CheckBox Margin="2,20,0,0"
+                          x:Name="CB5" />
+                <CheckBox Margin="2,20,0,0"
+                          x:Name="CB6" />
+                <CheckBox Margin="2,20,0,0"
+                          x:Name="CB7" />
+            </StackPanel>
             <Button Grid.Column="2"
-                    Grid.Row="2"
-                    Margin="10,12,30,12"
+                    Grid.Row="1"
+                    Margin="10,33,30,-83"
                     Style="{StaticResource menuButton1}"
                     Content="Рассчитать"
                     Click="Button_Click" />
+
+
+
         </Grid>
 
     </Border>
