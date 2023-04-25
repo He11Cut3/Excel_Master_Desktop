@@ -1,0 +1,74 @@
+﻿<Window x:Class="ExcelMaster.AP1_2_Fed_.AP1_Fed"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExcelMaster.AP1_4__Gos_"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Height="400"
+        Width="500"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent">
+
+    <Border Background="White"
+            CornerRadius="40"
+            BorderThickness="1"
+            BorderBrush="#02BE68">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="202*" />
+                <ColumnDefinition Width="223*" />
+                <ColumnDefinition Width="173*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="34*" />
+                <RowDefinition Height="115*" />
+                <RowDefinition Height="0*" />
+            </Grid.RowDefinitions>
+            <Button Margin="0,13,14,0"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Width="40"
+                    Height="40"
+                    HorizontalAlignment="Right"
+                    Opacity="0.3"
+                    Grid.Column="2"
+                    x:Name="Close"
+                    Click="Close_Click"
+                    VerticalAlignment="Top">
+                <materialDesign:PackIcon Kind="Close"
+                                         VerticalAlignment="Top"
+                                         HorizontalAlignment="Center" />
+            </Button>
+            <TextBlock Text="Ex-Master"
+                       Style="{StaticResource menuTitle}"
+                       Margin="63,30,0,14" />
+            <Button Grid.Column="1"
+                    Grid.Row="1"
+                    Style="{StaticResource menuButton1}"
+                    Content="Рассчитать"
+                    Click="Button_Click_1"
+                    Grid.ColumnSpan="2"
+                    Margin="176,225,10,32" />
+            <TextBox  Grid.Row="1"
+                      Height="30"
+                      VerticalAlignment="Top"
+                      x:Name="totalStudentsTextBox"
+                      Margin="10,63,10,0"
+                      Grid.Column="1" />
+            <TextBlock Text="Общее кол-во участв. :"
+                       TextWrapping="Wrap"
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       Foreground="#cfcfcf"
+                       FontSize="14"
+                       FontWeight="Bold"
+                       Margin="16,63,16,199" />
+        </Grid>
+
+    </Border>
+</Window>

@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExcelMaster_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ExcelMaster_Branch">
+    <Key>
+      <PropertyRef Name="ExcelMaster_Branch_id" />
+    </Key>
+    <Property Name="ExcelMaster_Branch_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExcelMaster_Branch_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ExcelMaster_Educational_Monitoring">
+    <Key>
+      <PropertyRef Name="ExcelMaster_Educational_Monitoring_id" />
+    </Key>
+    <Property Name="ExcelMaster_Educational_Monitoring_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExcelMaster_Educational_Monitoring_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ExcelMaster_Educational_Monitoring_AP1" Type="Int32" />
+    <Property Name="ExcelMaster_Educational_Monitoring_AP2" Type="Int32" />
+    <Property Name="ExcelMaster_Educational_Monitoring_AP3" Type="Int32" />
+    <Property Name="ExcelMaster_Educational_Monitoring_AP4" Type="Int32" />
+    <Property Name="ExcelMaster_Educational_Monitoring_Total" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ExcelMaster_Educational_Аctivities">
+    <Key>
+      <PropertyRef Name="ExcelMaster_Educational_Аctivities_id" />
+    </Key>
+    <Property Name="ExcelMaster_Educational_Аctivities_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExcelMaster_Educational_Аctivities_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ExcelMaster_Educational_Аctivities_AP1" Type="Int32" />
+    <Property Name="ExcelMaster_Educational_Аctivities_AP2" Type="Int32" />
+    <Property Name="ExcelMaster_Educational_Аctivities_AP3" Type="Int32" />
+    <Property Name="ExcelMaster_Educational_Аctivities_AP4" Type="Int32" />
+    <Property Name="ExcelMaster_Educational_Аctivities_Total" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ExcelMaster_MainWindow">
+    <Key>
+      <PropertyRef Name="ExcelMaster_MainWindow_id" />
+    </Key>
+    <Property Name="ExcelMaster_MainWindow_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExcelMaster_Branch_id" Type="Int32" />
+    <Property Name="ExcelMaster_Educational_Аctivities_id" Type="Int32" />
+    <Property Name="ExcelMaster_Educational_Monitoring_id" Type="Int32" />
+    <Property Name="ExcelMaster_State_Сontrol_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ExcelMaster_State_Сontrol">
+    <Key>
+      <PropertyRef Name="ExcelMaster_State_Сontrol_id" />
+    </Key>
+    <Property Name="ExcelMaster_State_Сontrol_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExcelMaster_State_Сontrol_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ExcelMaster_State_Сontrol_AP1" Type="Int32" />
+    <Property Name="ExcelMaster_State_Сontrol_AP2" Type="Int32" />
+    <Property Name="ExcelMaster_State_Сontrol_AP3" Type="Int32" />
+    <Property Name="ExcelMaster_State_Сontrol_AP4" Type="Int32" />
+    <Property Name="ExcelMaster_State_Сontrol_Total" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ExcelMaster_Users">
+    <Key>
+      <PropertyRef Name="ExcelMaster_Users_id" />
+    </Key>
+    <Property Name="ExcelMaster_Users_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExcelMaster_Users_Login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ExcelMaster_Users_Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityContainer Name="ExcelMaster_dbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ExcelMaster_Branch" EntityType="Self.ExcelMaster_Branch" />
+    <EntitySet Name="ExcelMaster_Educational_Monitoring" EntityType="Self.ExcelMaster_Educational_Monitoring" />
+    <EntitySet Name="ExcelMaster_Educational_Аctivities" EntityType="Self.ExcelMaster_Educational_Аctivities" />
+    <EntitySet Name="ExcelMaster_MainWindow" EntityType="Self.ExcelMaster_MainWindow" />
+    <EntitySet Name="ExcelMaster_State_Сontrol" EntityType="Self.ExcelMaster_State_Сontrol" />
+    <EntitySet Name="ExcelMaster_Users" EntityType="Self.ExcelMaster_Users" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ExcelMaster_dbModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ExcelMaster_dbModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ExcelMaster_dbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ExcelMaster_Branch">
+    <Key>
+      <PropertyRef Name="ExcelMaster_Branch_id" />
+    </Key>
+    <Property Name="ExcelMaster_Branch_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExcelMaster_Branch_Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ExcelMaster_Educational_Monitoring">
+    <Key>
+      <PropertyRef Name="ExcelMaster_Educational_Monitoring_id" />
+    </Key>
+    <Property Name="ExcelMaster_Educational_Monitoring_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExcelMaster_Educational_Monitoring_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExcelMaster_Educational_Monitoring_AP1" Type="int" />
+    <Property Name="ExcelMaster_Educational_Monitoring_AP2" Type="int" />
+    <Property Name="ExcelMaster_Educational_Monitoring_AP3" Type="int" />
+    <Property Name="ExcelMaster_Educational_Monitoring_AP4" Type="int" />
+    <Property Name="ExcelMaster_Educational_Monitoring_Total" Type="int" />
+  </EntityType>
+  <EntityType Name="ExcelMaster_Educational_Аctivities">
+    <Key>
+      <PropertyRef Name="ExcelMaster_Educational_Аctivities_id" />
+    </Key>
+    <Property Name="ExcelMaster_Educational_Аctivities_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExcelMaster_Educational_Аctivities_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExcelMaster_Educational_Аctivities_AP1" Type="int" />
+    <Property Name="ExcelMaster_Educational_Аctivities_AP2" Type="int" />
+    <Property Name="ExcelMaster_Educational_Аctivities_AP3" Type="int" />
+    <Property Name="ExcelMaster_Educational_Аctivities_AP4" Type="int" />
+    <Property Name="ExcelMaster_Educational_Аctivities_Total" Type="int" />
+  </EntityType>
+  <EntityType Name="ExcelMaster_MainWindow">
+    <Key>
+      <PropertyRef Name="ExcelMaster_MainWindow_id" />
+    </Key>
+    <Property Name="ExcelMaster_MainWindow_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExcelMaster_Branch_id" Type="int" />
+    <Property Name="ExcelMaster_Educational_Аctivities_id" Type="int" />
+    <Property Name="ExcelMaster_Educational_Monitoring_id" Type="int" />
+    <Property Name="ExcelMaster_State_Сontrol_id" Type="int" />
+  </EntityType>
+  <EntityType Name="ExcelMaster_State_Сontrol">
+    <Key>
+      <PropertyRef Name="ExcelMaster_State_Сontrol_id" />
+    </Key>
+    <Property Name="ExcelMaster_State_Сontrol_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExcelMaster_State_Сontrol_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExcelMaster_State_Сontrol_AP1" Type="int" />
+    <Property Name="ExcelMaster_State_Сontrol_AP2" Type="int" />
+    <Property Name="ExcelMaster_State_Сontrol_AP3" Type="int" />
+    <Property Name="ExcelMaster_State_Сontrol_AP4" Type="int" />
+    <Property Name="ExcelMaster_State_Сontrol_Total" Type="int" />
+  </EntityType>
+  <EntityType Name="ExcelMaster_Users">
+    <Key>
+      <PropertyRef Name="ExcelMaster_Users_id" />
+    </Key>
+    <Property Name="ExcelMaster_Users_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExcelMaster_Users_Login" Type="nvarchar" MaxLength="30" />
+    <Property Name="ExcelMaster_Users_Password" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Хранилище ExcelMaster_dbModelContainer">
+    <EntitySet Name="ExcelMaster_Branch" EntityType="Self.ExcelMaster_Branch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExcelMaster_Educational_Monitoring" EntityType="Self.ExcelMaster_Educational_Monitoring" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExcelMaster_Educational_Аctivities" EntityType="Self.ExcelMaster_Educational_Аctivities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExcelMaster_MainWindow" EntityType="Self.ExcelMaster_MainWindow" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExcelMaster_State_Сontrol" EntityType="Self.ExcelMaster_State_Сontrol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExcelMaster_Users" EntityType="Self.ExcelMaster_Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
