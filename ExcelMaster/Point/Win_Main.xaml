@@ -29,13 +29,24 @@
                 <RowDefinition Height="626" />
                 <RowDefinition Height="10" />
             </Grid.RowDefinitions>
-
+            <TextBlock Text="Выберите направление: "
+                       Margin="52,10,8,564"
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       TextWrapping="Wrap"
+                       Foreground="#cfcfcf"
+                       FontSize="18"
+                       FontWeight="Bold" />
             <Border Background="White"
                     CornerRadius="40,0,0,40"
                     Grid.Column="0"
-                    Grid.Row="1">
+                    Grid.Row="1"
+                    Margin="0,62,0,0">
 
-                <StackPanel  x:Name="testBut" />
+                <StackPanel  x:Name="testBut"
+                             Margin="0,10,0,0">
+
+                </StackPanel>
             </Border>
 
             <Grid>
@@ -45,7 +56,7 @@
                 <Button Background="Transparent"
                         BorderBrush="Transparent"
                         x:Name="New_Depart"
-                        Margin="158,0,12,32"
+                        Margin="119,32,51,0"
                         Click="New_Depart_Click">
                     <StackPanel Orientation="Horizontal"
                                 Grid.Row="0"
@@ -56,11 +67,10 @@
                                            Foreground="#97E6C1" />
                     </StackPanel>
                 </Button>
-                <Button 
-                    Background="Transparent"
+                <Button Background="Transparent"
                         BorderBrush="Transparent"
                         x:Name="FAQ"
-                        Margin="160,32,10,0"
+                        Margin="33,0,137,32"
                         Click="FAQ_Click">
                     <StackPanel Orientation="Horizontal"
                                 Grid.Row="0"
@@ -81,6 +91,20 @@
                                 Grid.Column="0">
                         <Controls:PackIcon Kind="Close"
                                            Width="22"
+                                           Height="25"
+                                           Foreground="#97E6C1" />
+                    </StackPanel>
+                </Button>
+                <Button Background="Transparent"
+                        BorderBrush="Transparent"
+                        x:Name="Return"
+                        Margin="88,0,82,32"
+                        Click="Return_Click">
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="0"
+                                Grid.Column="0">
+                        <Controls:PackIcon Kind="Arrow"
+                                           Width="18"
                                            Height="25"
                                            Foreground="#97E6C1" />
                     </StackPanel>

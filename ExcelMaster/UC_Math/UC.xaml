@@ -29,17 +29,6 @@
                    Margin="226,16,0,10" />
         <Border Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
-
-                <TextBlock Text="Выберите направление: "
-                           Margin="10,0,0,0"
-                           Foreground="#cfcfcf"
-                           FontSize="18"
-                           Height="28"
-                           VerticalAlignment="Center"
-                           Width="218"
-                           FontWeight="Bold" />
-
-
                 <Button Style="{StaticResource menuButton}"
                         x:Name="Gos"
                         Click="Gos_Click">

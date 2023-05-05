@@ -1,4 +1,5 @@
-﻿using ExcelMaster.UC_Math;
+﻿using ExcelMaster.Authorization;
+using ExcelMaster.UC_Math;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -103,6 +104,13 @@ namespace ExcelMaster.Point
         {
             FAQ fAQ = new FAQ();
             fAQ.ShowDialog();
+        }
+
+        private void Return_Click(object sender, RoutedEventArgs e)
+        {
+            Entry entry = new Entry();
+            this.Close();
+            entry.ShowDialog();
         }
     }
 }
