@@ -2,8 +2,10 @@
 using ExcelMaster.AP1_4__Gos_;
 using ExcelMaster.AP1_4_Mon_;
 using MaterialDesignThemes.Wpf;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,11 +57,12 @@ namespace ExcelMaster.UC_Math
                 foreach (var duplicate in recordsToUpdate)
                 {
                         duplicate.ExcelMaster_Educational_Аctivities_Total = sum;
+                        Report.Text = "Баллы: " + sum;
                 }
             }
             else
             {
-                Report.Text = 0.ToString();
+                Report.Text = "Баллы: " + 0.ToString();
             }
         }
         public void Itog_Mon()
@@ -77,12 +80,13 @@ namespace ExcelMaster.UC_Math
 
                 foreach (var duplicate in recordsToUpdate)
                 {
-                    duplicate.ExcelMaster_Educational_Monitoring_Total = sum1;
+                    duplicate.ExcelMaster_Educational_Monitoring_Total =  sum1;
+                    Report.Text = "Баллы: " + sum1;
                 }
             }
             else
             {
-                Report.Text = 0.ToString();
+                Report.Text = "Баллы: " + 0.ToString();
             }
         }
         public void Itog_Fed()
@@ -101,11 +105,12 @@ namespace ExcelMaster.UC_Math
                 foreach (var duplicate in recordsToUpdate)
                 {
                     duplicate.ExcelMaster_State_Сontrol_Total = sum2;
+                    Report.Text = "Баллы: " + sum2;
                 }
             }
             else
             {
-                Report.Text = 0.ToString();
+                Report.Text = "Баллы: " + 0.ToString();
             }
         }
 
@@ -138,6 +143,11 @@ namespace ExcelMaster.UC_Math
             AP1_Fed.Visibility = Visibility.Collapsed;
             AP2_Fed.Visibility = Visibility.Collapsed;
 
+            Fed_Report.Visibility = Visibility.Collapsed;
+            Mon_Report.Visibility = Visibility.Collapsed;
+            Gos_Report.Visibility = Visibility.Visible;   
+            
+
             Itog_Gos();
         }
 
@@ -154,6 +164,11 @@ namespace ExcelMaster.UC_Math
             AP4_Gos.Visibility = Visibility.Collapsed;
 
             AP1_Fed.Visibility = Visibility.Collapsed;
+            AP2_Fed.Visibility = Visibility.Collapsed;
+
+            Fed_Report.Visibility = Visibility.Collapsed;
+            Mon_Report.Visibility = Visibility.Visible;
+            Gos_Report.Visibility = Visibility.Collapsed;
 
             Itog_Mon();
         }
@@ -172,6 +187,10 @@ namespace ExcelMaster.UC_Math
             AP2_Gos.Visibility = Visibility.Collapsed;
             AP3_Gos.Visibility = Visibility.Collapsed;
             AP4_Gos.Visibility = Visibility.Collapsed;
+
+            Fed_Report.Visibility = Visibility.Visible;
+            Mon_Report.Visibility = Visibility.Collapsed;
+            Gos_Report.Visibility = Visibility.Collapsed;
 
             Itog_Fed();
         }
@@ -311,6 +330,127 @@ namespace ExcelMaster.UC_Math
             AP2_Fed aP2_Fed = new AP2_Fed(branchName, _context, this);
             //branchName, _context, this
             aP2_Fed.ShowDialog();
+        }
+
+        private void Gos_Report_Click(object sender, RoutedEventArgs e)
+        {
+            if ((MessageBox.Show("Вы уверены, что хотите сформировать отчёт?", "Добавление", MessageBoxButton.YesNo, MessageBoxImage.Warning)) == MessageBoxResult.Yes)
+            {
+                List<ExcelMaster_Educational_Аctivities> data = _context.ExcelMaster_Educational_Аctivities.ToList();
+
+                // Определяем наименования столбцов
+                string[] columnNames = new string[] { "Направление", "АП1", "АП2", "АП3", "АП4", "Итог" };
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                // Создаем новый файл Excel
+                using (ExcelPackage package = new ExcelPackage())
+                {
+                    // Добавляем лист
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Гос.Акр.");
+
+                    // Записываем наименования столбцов
+                    for (int i = 0; i < columnNames.Length; i++)
+                    {
+                        worksheet.Cells[1, i + 1].Value = columnNames[i];
+                    }
+
+                    // Записываем данные
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        worksheet.Cells[i + 2, 1].Value = data[i].ExcelMaster_Educational_Аctivities_Name;
+                        worksheet.Cells[i + 2, 2].Value = data[i].ExcelMaster_Educational_Аctivities_AP1;
+                        worksheet.Cells[i + 2, 3].Value = data[i].ExcelMaster_Educational_Аctivities_AP2;
+                        worksheet.Cells[i + 2, 4].Value = data[i].ExcelMaster_Educational_Аctivities_AP3;
+                        worksheet.Cells[i + 2, 5].Value = data[i].ExcelMaster_Educational_Аctivities_AP4;
+                        worksheet.Cells[i + 2, 6].Value = data[i].ExcelMaster_Educational_Аctivities_Total;
+                    }
+
+                    // Сохраняем файл
+                    File.WriteAllBytes("Гос.Акр.xlsx", package.GetAsByteArray());
+                    string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    string filePath = System.IO.Path.Combine(desktopPath, "Гос.Акр.xlsx");
+                    File.WriteAllBytes(filePath, package.GetAsByteArray());
+                }
+            }
+        }
+
+        private void Mon_Report_Click(object sender, RoutedEventArgs e)
+        {
+            if ((MessageBox.Show("Вы уверены, что хотите сформировать отчёт?", "Добавление", MessageBoxButton.YesNo, MessageBoxImage.Warning)) == MessageBoxResult.Yes)
+            {
+                List<ExcelMaster_Educational_Monitoring> data = _context.ExcelMaster_Educational_Monitoring.ToList();
+
+                // Определяем наименования столбцов
+                string[] columnNames = new string[] { "Направление", "АП1", "АП2", "АП3", "АП4", "Итог" };
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                // Создаем новый файл Excel
+                using (ExcelPackage package = new ExcelPackage())
+                {
+                    // Добавляем лист
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Аккр.мониторинг");
+
+                    // Записываем наименования столбцов
+                    for (int i = 0; i < columnNames.Length; i++)
+                    {
+                        worksheet.Cells[1, i + 1].Value = columnNames[i];
+                    }
+
+                    // Записываем данные
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        worksheet.Cells[i + 2, 1].Value = data[i].ExcelMaster_Educational_Monitoring_Name;
+                        worksheet.Cells[i + 2, 2].Value = data[i].ExcelMaster_Educational_Monitoring_AP1;
+                        worksheet.Cells[i + 2, 3].Value = data[i].ExcelMaster_Educational_Monitoring_AP2;
+                        worksheet.Cells[i + 2, 4].Value = data[i].ExcelMaster_Educational_Monitoring_AP3;
+                        worksheet.Cells[i + 2, 5].Value = data[i].ExcelMaster_Educational_Monitoring_AP4;
+                        worksheet.Cells[i + 2, 6].Value = data[i].ExcelMaster_Educational_Monitoring_Total;
+                    }
+
+                    // Сохраняем файл
+                    File.WriteAllBytes("Аккр.мониторинг.xlsx", package.GetAsByteArray());
+                    string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    string filePath = System.IO.Path.Combine(desktopPath, "Аккр.мониторинг.xlsx");
+                    File.WriteAllBytes(filePath, package.GetAsByteArray());
+                }
+            }
+        }
+
+        private void Fed_Report_Click(object sender, RoutedEventArgs e)
+        {
+            if ((MessageBox.Show("Вы уверены, что хотите сформировать отчёт?", "Добавление", MessageBoxButton.YesNo, MessageBoxImage.Warning)) == MessageBoxResult.Yes)
+            {
+                List<ExcelMaster_State_Сontrol> data = _context.ExcelMaster_State_Сontrol.ToList();
+
+                // Определяем наименования столбцов
+                string[] columnNames = new string[] { "Направление", "АП1", "АП2", "Итог" };
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                // Создаем новый файл Excel
+                using (ExcelPackage package = new ExcelPackage())
+                {
+                    // Добавляем лист
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Фед. гос. контроль");
+
+                    // Записываем наименования столбцов
+                    for (int i = 0; i < columnNames.Length; i++)
+                    {
+                        worksheet.Cells[1, i + 1].Value = columnNames[i];
+                    }
+
+                    // Записываем данные
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        worksheet.Cells[i + 2, 1].Value = data[i].ExcelMaster_State_Сontrol_Name;
+                        worksheet.Cells[i + 2, 2].Value = data[i].ExcelMaster_State_Сontrol_AP1;
+                        worksheet.Cells[i + 2, 3].Value = data[i].ExcelMaster_State_Сontrol_AP2;
+                        worksheet.Cells[i + 2, 4].Value = data[i].ExcelMaster_State_Сontrol_Total;
+                    }
+
+                    // Сохраняем файл
+                    File.WriteAllBytes("Фед.гос.контроль.xlsx", package.GetAsByteArray());
+                    string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    string filePath = System.IO.Path.Combine(desktopPath, "Фед.гос.контроль.xlsx");
+                    File.WriteAllBytes(filePath, package.GetAsByteArray());
+                }
+            }
         }
     }
 }

@@ -1,0 +1,105 @@
+﻿<Window x:Class="ExcelMaster.UC_Math.FAQ"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExcelMaster.UC_Math"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Win_Main"
+        Height="600"
+        Width="900"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent">
+
+    <Border Background="White"
+            CornerRadius="40"
+            BorderThickness="1"
+            BorderBrush="#02BE68">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="41*" />
+                <ColumnDefinition Width="408*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40*" />
+                <RowDefinition Height="259*" />
+            </Grid.RowDefinitions>
+            <Button Margin="0,13,14,0"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Width="40"
+                    Height="40"
+                    HorizontalAlignment="Right"
+                    Opacity="0.3"
+                    Grid.Column="1"
+                    x:Name="Close"
+                    Click="Close_Click"
+                    VerticalAlignment="Top">
+                <materialDesign:PackIcon Kind="Close"
+                                         VerticalAlignment="Top"
+                                         HorizontalAlignment="Center" />
+            </Button>
+            <TextBlock Text="Ex-Master"
+                       Style="{StaticResource menuTitle}"
+                       Grid.ColumnSpan="2"
+                       Margin="63,30,373,15" />
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1">
+                <TextBlock Text="Вопрос: Какие файлы можно загружать?"
+                           Foreground="#97E6C1"
+                           FontSize="18"
+                           Height="40"
+                           Width="809"
+                           FontWeight="Bold" />
+                <TextBlock Text="Ответ: В программу можно загружать только файлы программы Excel. Формат файлов: 'xlsx'."
+                           TextWrapping="Wrap"
+                           Foreground="#cfcfcf"
+                           FontSize="18"
+                           Height="54"
+                           Width="808"
+                           FontWeight="Bold" />
+                <TextBlock Text="Вопрос: Что делать, если программа выдает ошибку при загрузке файла?"
+                           Foreground="#97E6C1"
+                           TextWrapping="Wrap"
+                           FontSize="18"
+                           Height="40"
+                           Width="809"
+                           FontWeight="Bold" />
+                <TextBlock TextWrapping="Wrap"
+                           Foreground="#cfcfcf"
+                           FontSize="18"
+                           Height="99"
+                           Width="808"
+                           FontWeight="Bold"><Run Text="Ответ:" /><LineBreak /><Run Text="1.Необходимо проверить файл на его работоспособность" /><Run Language="ru-ru"
+                                                                                                                                                       Text="." /><LineBreak /><Run Text="2. " /><Run Language="ru-ru"
+                                                                                                                                                                                                      Text="Убедится" /><Run Text="," /><Run Language="ru-ru"
+                                                                                                                                                                                                                                             Text=" что файл оформлен так" /><Run Text="," /><Run Language="ru-ru"
+                                                                                                                                                                                                                                                                                                  Text=" как должен быть оформлен для определенного раздела программы." /></TextBlock>
+                <TextBlock Text="В случае ввода неправильных значений, что необходимо сделать дальше?"
+                           Foreground="#97E6C1"
+                           TextWrapping="Wrap"
+                           FontSize="18"
+                           Height="40"
+                           Width="809"
+                           FontWeight="Bold" />
+                <TextBlock Text="Ответ: Программа позволяет повторно ввести значения. Для решение проблемы - необходимо заного ввести значения."
+                           TextWrapping="Wrap"
+                           Foreground="#cfcfcf"
+                           FontSize="18"
+                           Height="54"
+                           Width="808"
+                           FontWeight="Bold" />
+            </StackPanel>
+
+
+
+
+        </Grid>
+
+    </Border>
+</Window>

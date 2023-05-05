@@ -271,6 +271,9 @@
     <Compile Include="sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="UC_Math\FAQ.xaml.cs">
+      <DependentUpon>FAQ.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC_Math\New_Depart.xaml.cs">
       <DependentUpon>New_Depart.xaml</DependentUpon>
     </Compile>
@@ -368,6 +371,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Style\Main_Style.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_Math\FAQ.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

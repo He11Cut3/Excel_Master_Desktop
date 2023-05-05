@@ -98,5 +98,11 @@ namespace ExcelMaster.Point
         {
            Application.Current.Shutdown();  
         }
+
+        private void FAQ_Click(object sender, RoutedEventArgs e)
+        {
+            FAQ fAQ = new FAQ();
+            fAQ.ShowDialog();
+        }
     }
 }
