@@ -30,12 +30,15 @@ namespace ExcelMaster.UC_Math
         public string BranchName { get; set; } // новое свойство
         private string _branchName;
 
+        private string _login;
+
         ExcelMaster_dbEntities _context = new ExcelMaster_dbEntities();
 
-        public UC(string branchName, ExcelMaster_dbEntities excelMaster_DbEntities)
+        public UC(string branchName, ExcelMaster_dbEntities excelMaster_DbEntities, string login)
         {
             InitializeComponent();
             Itog_Gos();
+            _login = login;
             _branchName = branchName;
             this._context = excelMaster_DbEntities;
             
@@ -339,7 +342,7 @@ namespace ExcelMaster.UC_Math
                 List<ExcelMaster_Educational_Аctivities> data = _context.ExcelMaster_Educational_Аctivities.ToList();
 
                 // Определяем наименования столбцов
-                string[] columnNames = new string[] { "Направление", "АП1", "АП2", "АП3", "АП4", "Итог" };
+                string[] columnNames = new string[] { "Направление", "АП1", "АП2", "АП3", "АП4", "Итог", "Составил" };
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                 // Создаем новый файл Excel
                 using (ExcelPackage package = new ExcelPackage())
@@ -363,6 +366,10 @@ namespace ExcelMaster.UC_Math
                         worksheet.Cells[i + 2, 5].Value = data[i].ExcelMaster_Educational_Аctivities_AP4;
                         worksheet.Cells[i + 2, 6].Value = data[i].ExcelMaster_Educational_Аctivities_Total;
                     }
+                    for (int i = 0; i < 1; i++)
+                    {
+                        worksheet.Cells[i + 2, 7].Value = _login;
+                    }
 
                     // Сохраняем файл
                     File.WriteAllBytes("Гос.Акр.xlsx", package.GetAsByteArray());
@@ -380,7 +387,7 @@ namespace ExcelMaster.UC_Math
                 List<ExcelMaster_Educational_Monitoring> data = _context.ExcelMaster_Educational_Monitoring.ToList();
 
                 // Определяем наименования столбцов
-                string[] columnNames = new string[] { "Направление", "АП1", "АП2", "АП3", "АП4", "Итог" };
+                string[] columnNames = new string[] { "Направление", "АП1", "АП2", "АП3", "АП4", "Итог", "Составил" };
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                 // Создаем новый файл Excel
                 using (ExcelPackage package = new ExcelPackage())
@@ -404,6 +411,10 @@ namespace ExcelMaster.UC_Math
                         worksheet.Cells[i + 2, 5].Value = data[i].ExcelMaster_Educational_Monitoring_AP4;
                         worksheet.Cells[i + 2, 6].Value = data[i].ExcelMaster_Educational_Monitoring_Total;
                     }
+                    for (int i = 0; i < 1; i++)
+                    {
+                        worksheet.Cells[i + 2, 7].Value = _login;
+                    }
 
                     // Сохраняем файл
                     File.WriteAllBytes("Аккр.мониторинг.xlsx", package.GetAsByteArray());
@@ -421,7 +432,7 @@ namespace ExcelMaster.UC_Math
                 List<ExcelMaster_State_Сontrol> data = _context.ExcelMaster_State_Сontrol.ToList();
 
                 // Определяем наименования столбцов
-                string[] columnNames = new string[] { "Направление", "АП1", "АП2", "Итог" };
+                string[] columnNames = new string[] { "Направление", "АП1", "АП2", "Итог", "Составил" };
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                 // Создаем новый файл Excel
                 using (ExcelPackage package = new ExcelPackage())
@@ -442,6 +453,10 @@ namespace ExcelMaster.UC_Math
                         worksheet.Cells[i + 2, 2].Value = data[i].ExcelMaster_State_Сontrol_AP1;
                         worksheet.Cells[i + 2, 3].Value = data[i].ExcelMaster_State_Сontrol_AP2;
                         worksheet.Cells[i + 2, 4].Value = data[i].ExcelMaster_State_Сontrol_Total;
+                    }
+                    for (int i = 0; i < 1; i++)
+                    {
+                        worksheet.Cells[i + 2, 5].Value = _login;
                     }
 
                     // Сохраняем файл

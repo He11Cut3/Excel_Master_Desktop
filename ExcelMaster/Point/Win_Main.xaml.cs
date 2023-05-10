@@ -1,4 +1,5 @@
-﻿using ExcelMaster.Authorization;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using ExcelMaster.Authorization;
 using ExcelMaster.UC_Math;
 using System;
 using System.Collections.Generic;
@@ -26,17 +27,26 @@ namespace ExcelMaster.Point
         ExcelMaster_dbEntities _context = new ExcelMaster_dbEntities();
         private string branchName; // переменная для хранения наименования кнопки
 
-        public Win_Main()
+        private ExcelMaster_Users _user;
+
+
+        public Win_Main(ExcelMaster_Users user)
         {
             InitializeComponent();
+            _user = user;
             Button_Refr(_branchName); // передаем значение _branchName в метод Button_Refr()
         }
+
+
+        
 
 
         public void Button_Refr(string branchName) // добавляем параметр branchName
         {
             testBut.Children.Clear();
             var buttonData = _context.ExcelMaster_Branch.ToList();
+            string login = _user.ExcelMaster_Users_Login;
+            string user = login;
             foreach (var data in buttonData)
             {
                 var button = new Button
@@ -44,7 +54,7 @@ namespace ExcelMaster.Point
                     Name = "button_" + data.ExcelMaster_Branch_id.ToString(),
                     Content = data.ExcelMaster_Branch_Name,
                     Style = (Style)FindResource("menuButton"),
-                    Tag = new UC(branchName, _context)
+                    Tag = new UC(branchName, _context, login)
                 };
                 button.Click += Button_Click;
                 testBut.Children.Add(button);
@@ -62,7 +72,8 @@ namespace ExcelMaster.Point
 
                 // Использовать идентификатор, чтобы получить филиал из базы данных
                     int branchId = int.Parse(buttonId);
-                    var branch = _context.ExcelMaster_Branch.FirstOrDefault(b => b.ExcelMaster_Branch_id == branchId);
+                string login = _user.ExcelMaster_Users_Login;
+                var branch = _context.ExcelMaster_Branch.FirstOrDefault(b => b.ExcelMaster_Branch_id == branchId);
 
                     // Получить наименование кнопки и сохранить его в переменную branchName
                     branchName = button.Content.ToString();
@@ -71,7 +82,7 @@ namespace ExcelMaster.Point
                     TestUC.Children.Clear();
 
                     // Создать новый экземпляр UserControl и добавить его на StackPanel
-                    var userControl = new UC(branchName, _context);
+                    var userControl = new UC(branchName, _context, login);
                     userControl.Branch = branch;
                     userControl.BranchName = branchName; // передать значение branchName в UserControl
                     userControl.UpdateLayout(); // Обновить визуальный интерфейс пользовательского элемента управления

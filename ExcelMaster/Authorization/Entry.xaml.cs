@@ -23,6 +23,8 @@ namespace ExcelMaster.Authorization
     {
         ExcelMaster_dbEntities _context = new ExcelMaster_dbEntities();
 
+        public string Loogin { get; set; }
+
         public Entry()
         {
             InitializeComponent();
@@ -53,7 +55,7 @@ namespace ExcelMaster.Authorization
             }
             else
             {
-                Win_Main win_Main = new Win_Main();
+                Win_Main win_Main = new Win_Main(user);
                 this.Close();
                 win_Main.ShowDialog();
             }
