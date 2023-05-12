@@ -115,5 +115,12 @@ namespace ExcelMaster.UC_Math
         {
             this.Close();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Del_Depart del_Depart = new Del_Depart(_wm);
+            this.Close();
+            del_Depart.ShowDialog();
+        }
     }
 }
